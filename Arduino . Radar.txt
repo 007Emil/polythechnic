@@ -1,0 +1,55 @@
+//Created by polythechnic. please try to code yourself.
+#include <Servo.h>
+Servo myservo;
+int const trigPin = A1;
+int const echoPin = A0;
+int car = 13;
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myservo.attach(9);
+ pinMode(car,OUTPUT);
+}
+
+void loop() {
+
+ {
+  digitalWrite(car,HIGH);
+  delay(1235);
+  digitalWrite(car,LOW);
+  delay(1235);
+ }
+  long duration, distance;
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+   
+  duration = pulseIn(echoPin, HIGH);
+ 
+
+ 
+  distance = (duration/2) / 29.1;
+  Serial.print(distance);
+  Serial.println("CM");
+  delay(10);
+
+  if (distance < 25 )
+  
+  {
+    myservo.write(90);
+    delay(10);
+  } else {
+    
+    myservo.write(0);
+  }
+  
+  delay(500);
+  }
+  
+ 
+ 
+  
